@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class UsuarioController extends Controller
 {
@@ -109,6 +110,85 @@ class UsuarioController extends Controller
         return [
             'message' => 'Usuário desconectado'
         ];
+    }
+
+    /**
+     * Find an Usuario, and base on it's level return the json data from url of IBGE web site
+     */
+    public function connectIBGE(Request $request)
+    {
+
+        $request->validate([
+                'email' => 'required|email|exists:usuarios',
+                'password' => 'required|max:10|string',
+            ],
+            [
+                'required' => 'Campo :attribute é obrigatorio',
+                'string' => 'Campo :attribute deve ser do tipo string',
+                'email' => 'Campo :attribute deve ser um email valido',
+                'max' => 'Campo :attribute deve ser menor que :max',
+                'exists' => 'Campo :attribute deve existir no banco.'
+            ]
+        );
+
+        $usuario = Usuario::where('email', $request->email)->first();
+
+        if (!$usuario || strcmp($request->password, $usuario->password)) {
+            return [
+                'message' => 'Credenciais incorretas'
+            ];
+        }
+
+        $url = env('IBGE_API_URL');
+        $response = Http::get($url);
+
+        if ($response->successful()) {
+            $dadosIbge = $response->json();
+
+            $dadosFiltrados = $this->filtrarDados($dadosIbge, $usuario->nivel);
+
+            return response()->json($dadosFiltrados);
+        } else {
+            return response()->json(['erro' => 'Erro ao obter dados do IBGE'], 500);
+        }
+    }
+
+    private function filtrarDados($dadosIbge, $nivel)
+    {
+        switch ($nivel) {
+            case 1:
+                return $dadosIbge;
+            case 2:
+                return $this->filtrarPorNivelIntermediario($dadosIbge);
+            case 3:
+                return $this->filtrarPorNivelRestrito($dadosIbge);
+            default:
+                return [];
+        }
+    }
+
+    private function filtrarPorNivelIntermediario($dadosIbge)
+    {
+        $dadosFiltrados = [];
+        foreach ($dadosIbge as $dado) {
+            $dadosFiltrados[] = [
+                'municipio' => $dado['municipio']['nome'],
+                'UF' => $dado['municipio']['microrregiao']['mesorregiao']['UF'],
+                'regiao' => $dado['municipio']['microrregiao']['mesorregiao']['UF']['regiao'],
+            ];
+        }
+        return $dadosFiltrados;
+    }
+
+    private function filtrarPorNivelRestrito($dadosIbge)
+    {
+        $dadosFiltrados = [];
+        foreach ($dadosIbge as $dado) {
+            $dadosFiltrados[] = [
+                'regiao' => $dado['municipio']['microrregiao']['mesorregiao']['UF']['regiao'],
+            ];
+        }
+        return $dadosFiltrados;
     }
 
     /**
