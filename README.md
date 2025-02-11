@@ -21,22 +21,22 @@ Nível 1: Acesso completo (Regiões, Estados (UF) e Cidades).
 Nível 2: Acesso intermediário (Regiões e Estados (UF)).
 Nível 3: Acesso restrito (apenas Regiões).
 ## Tecnologias utilizadas
-PHP
-Laravel
-SQLite
-Instalação
+* PHP
+* Laravel
+* SQLite
+## Instalação
 Clone o repositório.
 Instale as dependências com composer install.
 Configure as variáveis de ambiente no arquivo .env.
 Crie o banco de dados SQLite.
 Execute as migrations com php artisan migrate.
-Uso
+## Uso
 Inicie o servidor de desenvolvimento com php artisan serve.
 Acesse a aplicação no navegador.
-Rotas
+## Rotas
 Rotas para as funcionalidades CRUD de usuário.
 Rotas para login e logout.
 Rota para a função do IBGE, protegida por middleware de autenticação.
-Middleware
+## Middleware
 Middleware de autenticação para proteger rotas que exigem token de acesso.
 A URL da API do IBGE é armazenada em uma variável de ambiente para evitar exposição no código-fonte.
