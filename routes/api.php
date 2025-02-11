@@ -11,4 +11,4 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('usuario', UsuarioController::class);
 Route::post('/login', [UsuarioController::class, 'login']);
 Route::post('/logout', [UsuarioController::class, 'logout'])->middleware('auth:sanctum');
-Route::post('/ibge', [UsuarioController::class, 'connectIBGE']);
+Route::post('/ibge', [UsuarioController::class, 'connectIBGE'])->middleware('auth:sanctum');

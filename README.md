@@ -40,3 +40,5 @@ Rota para a função do IBGE, protegida por middleware de autenticação.
 ## Middleware
 Middleware de autenticação para proteger rotas que exigem token de acesso.
 A URL da API do IBGE é armazenada em uma variável de ambiente para evitar exposição no código-fonte.
+# Documentação da API
+Este projeto possui uma API RESTful. A documentação das rotas está disponível aqui: postman\api laravel.postman_collection.json

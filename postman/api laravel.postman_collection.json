@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "e33fbd07-24e0-403c-ae6f-1197a7b4fe56",
+		"name": "api laravel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1553512",
+		"_collection_link": "https://orange-equinox-962379.postman.co/workspace/luiz~dd215c17-0953-4e75-bad2-598cb9411035/collection/1553512-e33fbd07-24e0-403c-ae6f-1197a7b4fe56?action=share&source=collection_link&creator=1553512"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/usuario",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/usuario/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuario",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"usuario 2\",\r\n    \"email\": \"teste3@validation.com\",\r\n    \"password\": \"321\",\r\n    \"nivel\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/usuario",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"usuario 1\",\r\n    \"email\": \"teste1@validation.com\",\r\n    \"password\": \"1234567890\",\r\n    \"nivel\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/usuario/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/usuario/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuario",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autenticacao",
+			"item": [
+				{
+					"name": "/login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"teste3@validation.com\",\r\n    \"password\": \"321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|hHAfFx4buIBz5d9YOZBFVrxjKD9HL8bHIVHdP9LHfc274703",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"teste3@validation.com\",\r\n    \"password\": \"321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ibge",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|hHAfFx4buIBz5d9YOZBFVrxjKD9HL8bHIVHdP9LHfc274703",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"teste1@validation.com\",\r\n    \"password\": \"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/ibge",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ibge"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
